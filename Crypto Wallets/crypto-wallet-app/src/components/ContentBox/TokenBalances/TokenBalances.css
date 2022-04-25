@@ -1,0 +1,30 @@
+.token-balance-wrapper {
+	border: 0.1em solid rgb(206, 208, 217);
+	padding: 0 0.8em;
+	border-radius: 0.5em;
+}
+
+.token-balance-row {
+	padding: 0.7em 0;
+	border-bottom: 0.09em solid rgb(206 208 217);
+	display: flex;
+	align-items: center;
+}
+
+.token-balance-row:last-child {
+	border-bottom: none;
+}
+
+.token-balance-icon {
+	width: 3em;
+	height: 1.8em;
+}
+
+.token-balance-text {
+	width: 5em;
+}
+
+.token-balance-value {
+	width: 5em;
+	margin: 0 0.5em;
+}

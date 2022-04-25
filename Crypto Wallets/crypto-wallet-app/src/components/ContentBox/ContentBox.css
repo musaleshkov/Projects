@@ -1,0 +1,35 @@
+.content-box-wrapper {
+	background: rgb(255, 255, 255);
+	box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px,
+		rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	border-radius: 0.5em;
+	padding: 0.8em;
+}
+
+.content-box-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.content-box-content-wrapper {
+	border: 0.1em solid rgb(206, 208, 217);
+	border-radius: 0.5em;
+	padding: 0.5em;
+	margin: 0.5em 0;
+}
+
+.content-box-sub-text {
+	width: initial;
+	font-size: 0.825rem;
+	font-weight: 500;
+	color: rgb(110, 114, 125);
+}
+
+.content-box-address {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

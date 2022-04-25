@@ -1,0 +1,34 @@
+.chains-options-dropdown-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.chains-options-dropdown-text {
+	background: rgb(255, 255, 255);
+	border: 0.1em solid rgb(206, 208, 217);
+	padding: 0.5em;
+	border-radius: 0.5em;
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+	width: 13.5rem;
+}
+
+.chains-options-dropdown-list {
+	position: absolute;
+	background: rgb(255, 255, 255);
+	box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px,
+		rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px;
+	padding: 0 0.8em;
+	border-radius: 0.5em;
+	margin-top: 2.5em;
+}
+.chains-options-dropdown-row {
+	padding: 0.7em 0;
+	border-bottom: 0.09em solid rgb(206 208 217);
+	cursor: pointer;
+}
+
+.chains-options-dropdown-row:last-child {
+	border-bottom: none;
+}

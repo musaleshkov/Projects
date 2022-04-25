@@ -1,0 +1,32 @@
+html {
+	background-color: rgb(247, 248, 250) !important;
+	height: 100%;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.App {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	flex-direction: column;
+	margin: 2rem 0;
+}
+
+.authentication-button {
+	background: rgb(255, 255, 255);
+	box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px,
+		rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px;
+	padding: 1em;
+	border-radius: 0.5em;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.icon {
+	width: 2em;
+	height: 1.4em;
+}
