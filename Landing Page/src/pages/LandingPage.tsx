@@ -1,5 +1,4 @@
-import { ReactElement, FunctionComponent } from "react";
-import { Container } from "@/styles/CommonStyles";
+import { type ReactElement, type FC } from "react";
 import FooterSection from "@/components/Footer/FooterSection";
 import InfoSection from "@/components/InfoSection/InfoSection";
 import HeroSection from "@/components/HeroSection/HeroSection";
@@ -8,13 +7,15 @@ interface LandingPageProps {
 	onStartQuiz: () => void;
 }
 
-const LandingPage: FunctionComponent<LandingPageProps> = ({ onStartQuiz }: LandingPageProps): ReactElement => {
+const LandingPage: FC<LandingPageProps> = ({
+	onStartQuiz,
+}: LandingPageProps): ReactElement => {
 	return (
-		<Container role="main">
-			<HeroSection onStartQuiz={onStartQuiz}/>
-			<InfoSection/>
-			<FooterSection/>
-		</Container>
+		<main className="w-full overflow-x-hidden">
+			<HeroSection onStartQuiz={onStartQuiz} />
+			<InfoSection />
+			<FooterSection />
+		</main>
 	);
 };
 
