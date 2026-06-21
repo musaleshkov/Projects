@@ -1,7 +1,7 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useRef, useState } from "react";
 import { useChain, useMoralis } from "react-moralis";
-import { ethers } from "ethers";
-import { SUPPORTED_CHAINS } from "../../../Helpers/supported-chains";
+import { SUPPORTED_CHAINS } from "../../../constants/supported-chains";
+import { convertToHex } from "../../../utils/chain";
 import "./ChainsOptionsDropdown.css";
 
 const ChainsOptionsDropdown: FunctionComponent = () => {
@@ -9,11 +9,18 @@ const ChainsOptionsDropdown: FunctionComponent = () => {
 	const { switchNetwork, chain } = useChain();
 
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const convertToHex = (value: number) => ethers.utils.hexValue(value);
+	const hasEnabledWeb3 = useRef(false);
 
-	if (!isWeb3Enabled) {
-		enableWeb3();
-	}
+	useEffect(() => {
+		if (!isWeb3Enabled && !hasEnabledWeb3.current) {
+			hasEnabledWeb3.current = true;
+			enableWeb3();
+		}
+	}, [isWeb3Enabled, enableWeb3]);
+
+	const handleChainSwitch = (chainId: number) => {
+		switchNetwork(convertToHex(chainId));
+	};
 
 	return (
 		<div
@@ -27,11 +34,12 @@ const ChainsOptionsDropdown: FunctionComponent = () => {
 					className="chains-options-dropdown-list"
 					onMouseEnter={() => setIsOpen(true)}
 					onMouseLeave={() => setIsOpen(false)}>
-					{SUPPORTED_CHAINS.map((chain) => (
+					{SUPPORTED_CHAINS.map((supportedChain) => (
 						<div
+							key={supportedChain.chainId}
 							className="chains-options-dropdown-row"
-							onClick={() => switchNetwork(convertToHex(chain.chainId))}>
-							{chain.chainName}
+							onClick={() => handleChainSwitch(supportedChain.chainId)}>
+							{supportedChain.chainName}
 						</div>
 					))}
 				</div>

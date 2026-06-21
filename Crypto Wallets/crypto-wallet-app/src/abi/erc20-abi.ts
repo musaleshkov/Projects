@@ -1,3 +1,4 @@
+/** Standard ERC-20 ABI for token balance lookups */
 export const erc20ABI = [
 	{
 		constant: true,

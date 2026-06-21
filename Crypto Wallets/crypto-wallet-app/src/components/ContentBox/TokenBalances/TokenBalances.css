@@ -1,14 +1,15 @@
 .token-balance-wrapper {
-	border: 0.1em solid rgb(206, 208, 217);
-	padding: 0 0.8em;
-	border-radius: 0.5em;
+	border: var(--border-width) solid var(--color-border);
+	padding: 0 var(--spacing-md);
+	border-radius: var(--border-radius);
 }
 
 .token-balance-row {
 	padding: 0.7em 0;
-	border-bottom: 0.09em solid rgb(206 208 217);
+	border-bottom: 0.09em solid var(--color-border);
 	display: flex;
 	align-items: center;
+	gap: var(--spacing-sm);
 }
 
 .token-balance-row:last-child {
@@ -18,13 +19,44 @@
 .token-balance-icon {
 	width: 3em;
 	height: 1.8em;
+	flex-shrink: 0;
 }
 
 .token-balance-text {
 	width: 5em;
+	flex-shrink: 0;
 }
 
 .token-balance-value {
 	width: 5em;
-	margin: 0 0.5em;
+	flex-shrink: 0;
+}
+
+.token-balance-decimals {
+	margin-left: auto;
+	color: var(--color-text-secondary);
+	font-size: 0.825rem;
+	white-space: nowrap;
+}
+
+.token-balance-state {
+	padding: var(--spacing-xl) 0;
+	text-align: center;
+	color: var(--color-text-secondary);
+	font-size: 0.9rem;
+}
+
+.token-balance-error {
+	color: var(--color-error);
+}
+
+@media (max-width: 480px) {
+	.token-balance-row {
+		flex-wrap: wrap;
+	}
+
+	.token-balance-decimals {
+		margin-left: 0;
+		width: 100%;
+	}
 }
