@@ -1,8 +1,7 @@
-import { QuizOption } from "@/types/quiz";
+import type { QuizOption } from "@/types/quiz";
 import { useTranslation } from "react-i18next";
-import { ReactElement, FunctionComponent } from "react";
+import { type ReactElement, type FC } from "react";
 import { PrimaryButton } from "@/styles/CommonStyles";
-import { ResultContainer, ResultText, ResultButtonWrapper } from "@/components/Result/ResultStyles";
 
 interface ResultProps {
 	answers: QuizOption[];
@@ -10,20 +9,24 @@ interface ResultProps {
 	onGoBackToLanding: () => void;
 }
 
-const Result: FunctionComponent<ResultProps> = ({
+const Result: FC<ResultProps> = ({
 	answers,
 	onRestart,
 	onGoBackToLanding,
-}: Readonly<ResultProps>): ReactElement => {
+}: ResultProps): ReactElement => {
 	const { t } = useTranslation();
-	const hasRejection: boolean = answers?.some((answer: QuizOption): boolean => answer?.isRejection);
+	const hasRejection = answers?.some((answer: QuizOption): boolean => answer?.isRejection);
 
 	return (
-		<ResultContainer role="main" aria-live="polite">
-			<ResultText>
+		<div
+			role="main"
+			aria-live="polite"
+			className="flex flex-col items-center justify-center min-h-[60vh] p-8 bg-secondary-50"
+		>
+			<p className="text-2xl font-bold text-foreground mb-8">
 				{hasRejection ? t("resultRejected") : t("resultSuccess")}
-			</ResultText>
-			<ResultButtonWrapper>
+			</p>
+			<div className="flex gap-4 flex-wrap justify-center">
 				<PrimaryButton
 					onClick={onRestart}
 					aria-label="Restart the quiz"
@@ -31,8 +34,6 @@ const Result: FunctionComponent<ResultProps> = ({
 				>
 					{t("restartButton")}
 				</PrimaryButton>
-
-
 				<PrimaryButton
 					onClick={onGoBackToLanding}
 					aria-label="Go back to the landing page"
@@ -40,8 +41,8 @@ const Result: FunctionComponent<ResultProps> = ({
 				>
 					{t("goBackToTheLandingPage")}
 				</PrimaryButton>
-			</ResultButtonWrapper>
-		</ResultContainer>
+			</div>
+		</div>
 	);
 };
 

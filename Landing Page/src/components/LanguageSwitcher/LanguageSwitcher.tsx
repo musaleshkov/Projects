@@ -1,15 +1,16 @@
-import { ReactElement, FunctionComponent, useEffect, Dispatch } from "react";
+import { type ReactElement, type FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { LanguageSwitcherContainer, LanguageButton } from "@/components/LanguageSwitcher/LanguageSwitcherStyles";
 import { resetQuiz } from "@/features/quiz/quizSlice";
-import { UnknownAction } from "redux";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/app/store";
 
-enum Language { EN_US = "EN", FR_FR = "FR" }
+enum Language {
+	EN_US = "EN",
+	FR_FR = "FR",
+}
 
-const LanguageSwitcher: FunctionComponent = (): ReactElement => {
+const LanguageSwitcher: FC = (): ReactElement => {
 	const { i18n } = useTranslation();
-	const dispatch: Dispatch<UnknownAction> = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const changeLanguage = (language: string): void => {
 		i18n?.changeLanguage(language);
@@ -20,25 +21,37 @@ const LanguageSwitcher: FunctionComponent = (): ReactElement => {
 		document.documentElement.lang = i18n?.language;
 	}, [i18n?.language]);
 
+	const isActive = (lang: string): boolean => i18n?.language === lang;
+
 	return (
-		<LanguageSwitcherContainer>
-			<LanguageButton
-				onClick={(): void => changeLanguage("en")}
+		<div className="absolute right-8 top-8 flex gap-2 z-10 md:right-4 md:top-2 sm:right-2">
+			<button
+				onClick={() => changeLanguage("en")}
 				aria-label="Switch to English"
-				aria-current={i18n?.language === "en" ? "true" : "false"}
+				aria-current={isActive("en") ? "true" : "false"}
 				data-cy="language-en"
+				className={`px-3 py-1 rounded-md text-sm font-bold uppercase transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
+					isActive("en")
+						? "bg-primary-600 text-white"
+						: "bg-secondary-100 text-foreground hover:bg-secondary-200"
+				}`}
 			>
 				{Language.EN_US}
-			</LanguageButton>
-			<LanguageButton
-				onClick={(): void => changeLanguage("fr")}
+			</button>
+			<button
+				onClick={() => changeLanguage("fr")}
 				aria-label="Switch to French"
-				aria-current={i18n?.language === "fr" ? "true" : "false"}
+				aria-current={isActive("fr") ? "true" : "false"}
 				data-cy="language-fr-desktop"
+				className={`px-3 py-1 rounded-md text-sm font-bold uppercase transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
+					isActive("fr")
+						? "bg-primary-600 text-white"
+						: "bg-secondary-100 text-foreground hover:bg-secondary-200"
+				}`}
 			>
 				{Language.FR_FR}
-			</LanguageButton>
-		</LanguageSwitcherContainer>
+			</button>
+		</div>
 	);
 };
 

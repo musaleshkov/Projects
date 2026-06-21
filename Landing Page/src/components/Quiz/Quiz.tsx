@@ -1,69 +1,92 @@
-import { Dispatch, ReactElement, FunctionComponent } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, store } from "@/app/store";
-import { addAnswer, goToNextStep, goToPreviousStep, resetQuiz } from "@/features/quiz/quizSlice";
-import Question from "../Question/Question";
-import Result from "../Result/Result";
-import { QuizData, QuizOption } from "@/types/quiz";
-import { UnknownAction } from "redux";
+import { useEffect, type ReactElement, type FC } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/store";
+import {
+	addAnswer,
+	goToNextStep,
+	goToPreviousStep,
+	setPhase,
+	resetQuiz,
+} from "@/features/quiz/quizSlice";
+import Question from "@/components/Question/Question";
+import Result from "@/components/Result/Result";
+import type { QuizData, QuizOption } from "@/types/quiz";
 import { PrimaryButton } from "@/styles/CommonStyles";
 import { useTranslation } from "react-i18next";
-import { QuizContainer } from "@/components/Quiz/QuizStyles";
 
 export interface QuizProps {
 	quizData: QuizData | undefined;
 	onGoBackToLanding: () => void;
 }
 
-const Quiz: FunctionComponent<QuizProps> = ({ quizData, onGoBackToLanding }: QuizProps): ReactElement => {
-	const dispatch: Dispatch<UnknownAction> = useDispatch();
+const Quiz: FC<QuizProps> = ({ quizData, onGoBackToLanding }: QuizProps): ReactElement => {
+	const dispatch = useAppDispatch();
 	const { t } = useTranslation();
-	const { answers, currentStep } = useSelector((state: RootState) => state?.quiz);
-	localStorage.setItem("quizProgress", JSON.stringify(store.getState().quiz));
+	const answers = useAppSelector((state) => state.quiz.answers);
+	const currentStep = useAppSelector((state) => state.quiz.currentStep);
 
-	const handleAnswer: (answer: QuizOption) => void = (answer: QuizOption): void => {
+	useEffect(() => {
+		dispatch(setPhase("question"));
+	}, [dispatch]);
+
+	const handleAnswer = (answer: QuizOption): void => {
 		dispatch(addAnswer(answer));
 		dispatch(goToNextStep());
 	};
 
-	const handleBack: () => void = (): void => dispatch(goToPreviousStep());
+	const handleBack = (): void => {
+		dispatch(goToPreviousStep());
+	};
 
-	if (!quizData) {
-		return <p>{t("noQuizData")}</p>;
+	if (!quizData?.questions?.length) {
+		return (
+			<div className="flex items-center justify-center min-h-screen bg-secondary-50">
+				<p className="text-foreground text-lg">{t("noQuizData")}</p>
+			</div>
+		);
 	}
 
-	if (currentStep >= quizData?.questions?.length) {
-		return <Result answers={answers} onRestart={(): void => dispatch(resetQuiz())}
-		               onGoBackToLanding={onGoBackToLanding}/>;
-	}
+	const isLastQuestion = currentStep >= quizData.questions.length;
 
 	return (
-		<QuizContainer role="main" aria-live="polite">
-			<Question
-				question={quizData?.questions[currentStep]}
-				onAnswer={handleAnswer}
-				onBack={currentStep > 0 ? handleBack : undefined}
-			/>
-			{currentStep < 1 && (
+		<div
+			role="main"
+			aria-live="polite"
+			className="flex flex-col items-center justify-center text-center overflow-hidden bg-secondary-50 min-h-screen"
+		>
+			{isLastQuestion ? (
+				<Result
+					answers={answers}
+					onRestart={() => dispatch(resetQuiz())}
+					onGoBackToLanding={onGoBackToLanding}
+				/>
+			) : (
 				<>
-					<PrimaryButton
-						onClick={(): void => dispatch(resetQuiz())}
-						aria-label="Reset the quiz"
-						data-cy="reset-quiz-button"
-					>
-						{t("restartQuiz")}
-					</PrimaryButton>
-
-					<PrimaryButton
-						onClick={onGoBackToLanding}
-						aria-label="Go back to the landing page"
-						data-cy="go-back-button"
-					>
-						{t("goBackToTheLandingPage")}
-					</PrimaryButton>
+					<Question
+						question={quizData.questions[currentStep]}
+						onAnswer={handleAnswer}
+						onBack={currentStep > 0 ? handleBack : undefined}
+					/>
+					{currentStep < 1 && (
+						<div className="flex flex-col items-center gap-2 mt-4">
+							<PrimaryButton
+								onClick={() => dispatch(resetQuiz())}
+								aria-label="Reset the quiz"
+								data-cy="reset-quiz-button"
+							>
+								{t("restartQuiz")}
+							</PrimaryButton>
+							<PrimaryButton
+								onClick={onGoBackToLanding}
+								aria-label="Go back to the landing page"
+								data-cy="go-back-button"
+							>
+								{t("goBackToTheLandingPage")}
+							</PrimaryButton>
+						</div>
+					)}
 				</>
 			)}
-		</QuizContainer>
+		</div>
 	);
 };
 

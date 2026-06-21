@@ -1,21 +1,24 @@
-import React, { ReactElement, FunctionComponent } from "react";
-import { FooterColumn, FooterListTitle, FooterList, FooterListItem } from "@/components/Footer/FooterStyles";
+import { type ReactElement, type FunctionComponent } from "react";
 
 interface ListProps {
 	items: string[];
 	title: string;
 }
 
-const ListItems: FunctionComponent<ListProps> = ({ items, title }: ListProps): ReactElement => (
-
-	<FooterColumn>
-		<FooterListTitle>{title ?? "title"}</FooterListTitle>
-		<FooterList>
-			{items?.map((item: string): ReactElement => (
-				<FooterListItem key={item}>{item ?? "item"}</FooterListItem>
+const ListItems: FunctionComponent<ListProps> = ({
+	items,
+	title,
+}: ListProps): ReactElement => (
+	<div className="text-left mx-4 my-4">
+		<h4 className="text-foreground font-semibold mb-2">{title}</h4>
+		<ul className="list-none p-0">
+			{items.map((item: string): ReactElement => (
+				<li key={item} className="my-2 text-foreground">
+					{item}
+				</li>
 			))}
-		</FooterList>
-	</FooterColumn>
+		</ul>
+	</div>
 );
 
 export default ListItems;

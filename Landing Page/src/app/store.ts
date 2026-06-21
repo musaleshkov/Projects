@@ -1,15 +1,11 @@
-import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import quizReducer from "../features/quiz/quizSlice";
-import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+import { useDispatch, useSelector, type TypedUseSelectorHook } from "react-redux";
 
-export const store: EnhancedStore = configureStore({
+export const store = configureStore({
 	reducer: {
 		quiz: quizReducer,
 	},
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: false,
-		}),
 	devTools: process.env.NODE_ENV !== "production",
 });
 

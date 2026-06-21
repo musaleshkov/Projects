@@ -1,0 +1,49 @@
+# Cursor AI Rules — Health Landing Page
+
+## Project Overview
+Next.js 15 + React 19 + TypeScript health assessment landing page with:
+- Interactive quiz flow (multi-step questionnaire)
+- Redux Toolkit state management
+- React Query for server state
+- Tailwind CSS for styling
+- i18next internationalization (EN + FR)
+- Cypress E2E and component testing
+- Sentry error tracking + LogRocket session replay
+
+## Tech Stack
+- Next.js 15 (App Router), React 19, TypeScript 5.7
+- Redux Toolkit 2.5, React Query 5.64
+- Tailwind CSS 3.4 + Tailwind Forms + Tailwind Typography
+- i18next 24 + react-i18next 15
+- Cypress 13 + cypress-axe (accessibility)
+- Sentry 8 + LogRocket 9
+
+## Code Conventions
+- Components: `FunctionComponent` type, default exports
+- State: Redux Toolkit slices in `src/features/`
+- i18n: keys in `public/locales/{en,fr}/`, use `useTranslation()` hook
+- Types: interfaces in `src/types/`
+- Imports: `@/` path alias resolves to `src/`
+- Barrel exports: `index.ts` in each component/feature folder
+
+## File Structure Rules
+- Each component in its own folder with `.tsx` + optional `.css`
+- Sub-components nested within parent folder
+- Barrel exports (`index.ts`) for multi-file modules
+
+## Commands
+- `npm run dev` — dev server (turbopack, port 3000)
+- `npm run build` — production build
+- `npm run lint` — ESLint (flat config v9)
+- `npm run format` — Prettier
+- `npm run type-check` — TypeScript
+- `npm run cypress:open` — Cypress GUI
+- `npm run cypress:run` — Cypress headless
+- `npm run test` — lint + type-check + cypress
+
+## Quality Gates
+- SonarQube: `sonar-project.properties`
+- Qodana: `qodana.yaml`
+- ESLint flat config: `eslint.config.mjs`
+- Prettier: `.prettierrc`
+- EditorConfig: `.editorconfig`

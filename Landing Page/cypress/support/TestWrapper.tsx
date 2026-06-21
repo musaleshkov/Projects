@@ -1,6 +1,5 @@
 // cypress/support/TestWrapper.tsx
 import React, { ReactElement, StrictMode } from "react";
-import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import { store } from "@/app/store"; // Import your Redux store
@@ -24,8 +23,8 @@ const TestWrapper: React.FC<TestWrapperProps> = ({ children }) => {
 					<Provider store={store}>
 						<ThemeProvider theme={theme}>
 							<I18nextProvider i18n={i18n}>
-								<GlobalStyles/>
-								<LanguageSwitcher/>
+								<GlobalStyles />
+								<LanguageSwitcher />
 								{children}
 							</I18nextProvider>
 						</ThemeProvider>
