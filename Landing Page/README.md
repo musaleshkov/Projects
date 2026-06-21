@@ -217,7 +217,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for development workflow and code conve
 
 ## 📄 License
 
-MIT License — see [LICENSE](./LICENSE) for details.
+Private project — all rights reserved.
 
 ---
 
