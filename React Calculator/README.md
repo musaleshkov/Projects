@@ -3,7 +3,7 @@
 A modern, dark-themed calculator built with **React 19**, **JavaScript**, and **mathjs**. Features a glassmorphism UI with animated gradient background, keyboard support, and safe expression evaluation.
 
 ![Preview](./Preview.png?raw=true "Calculator Preview")
-![Preview_2](./Preview.png?raw=true "Calculator Preview")
+![Preview_2](./Preview_2.png?raw=true "Calculator Preview 2")
 
 ---
 
