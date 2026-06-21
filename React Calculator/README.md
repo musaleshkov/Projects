@@ -1,72 +1,149 @@
-![Alt text](./Preview.png?raw=true "Preview")
+# 🧮 React Calculator
 
-# Getting Started with Create React App
+A modern, dark-themed calculator built with **React 19**, **JavaScript**, and **mathjs**. Features a glassmorphism UI with animated gradient background, keyboard support, and safe expression evaluation.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Preview](./Preview.png?raw=true "Calculator Preview")
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+- **Basic operations** — addition, subtraction, multiplication, division
+- **Safe evaluation** — uses mathjs `evaluate()` instead of `eval()`
+- **Keyboard support** — type numbers and operators directly
+- **Clear and backspace** — AC/C button clears all, backspace removes last character
+- **Glassmorphism dark theme** — CSS custom properties with animated gradient background
+- **Responsive design** — works on desktop and mobile
+- **Hover effects** — smooth button transitions and interactive feedback
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠 Tech Stack
 
-### `npm test`
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| React | 19.2 | UI framework |
+| mathjs | 15.2 | Safe expression evaluation |
+| react-scripts | 5.0 | Build tooling (CRA) |
+| Jest | CRA bundled | Testing |
+| ESLint | CRA bundled | Linting |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🚦 Quick Start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Prerequisites: Node.js >=20 (see .nvmrc)
+nvm use
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Install dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Start development server
+npm start
+# → http://localhost:3000
 
-### `npm run eject`
+# Production build
+npm run build
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Run all checks
+npm run check-all
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📦 Available Scripts
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+| Command | Description |
+|---------|-------------|
+| `npm start` | Dev server (port 3000) |
+| `npm run build` | Production build |
+| `npm test` | Run tests once (CI mode) |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lint` | ESLint check |
+| `npm run lint:fix` | Auto-fix ESLint issues |
+| `npm run format` | Auto-format with Prettier |
+| `npm run format:check` | Check formatting |
+| `npm run check-all` | Run all quality checks |
+| `npm run clean` | Remove build/coverage |
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📁 Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+├── hooks/
+│   └── useCalculator.js             # Calculator state logic
+├── components/
+│   ├── Calculator/
+│   │   ├── Calculator.js            # Main calculator UI + button grid
+│   │   └── Calculator.css           # Calculator-specific styles
+│   └── CalculatorDisplay/
+│       ├── CalculatorDisplay.js     # Input and result display
+│       └── CalculatorDisplay.css    # Display-specific styles
+├── constants/
+│   └── commonConstants.js           # Button layouts and constants
+├── App.js                           # Root component
+├── App.css                          # Root layout styles
+├── index.js                         # Entry point (createRoot)
+└── index.css                        # CSS custom properties (theme tokens)
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🏗 Architecture
 
-### Analyzing the Bundle Size
+### Component Tree
+```
+App
+└── Calculator
+    └── CalculatorDisplay
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Data Flow
+```
+Button Click / Keyboard → useCalculator hook → state → CalculatorDisplay
+                              ↓
+                    mathjs.evaluate(expression) → result
+```
 
-### Making a Progressive Web App
+### State Management
+- **`useCalculator`** — Custom hook encapsulating all calculator state and logic
+- State: `displayValue`, `operator`, `waitingForOperand`, `firstOperand`, `clearAll`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🧪 Developer Tooling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+| Tool | Config File |
+|------|------------|
+| SonarQube | `sonar-project.properties` |
+| Qodana | `qodana.yaml` |
+| ESLint | `.eslintrc.json` |
+| Prettier | `.prettierrc` |
+| EditorConfig | `.editorconfig` |
+| TypeScript | `tsconfig.json` (allowJs) |
+| Cursor AI | `.cursorrules` |
+| GitHub Copilot | `.github/copilot-instructions.md` |
+| Claude/Cline | `CLAUDE.md` |
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📝 Contributing
 
-### `npm run build` fails to minify
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development workflow and code conventions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📄 License
+
+Private project — all rights reserved.
+
+---
+
+## 🔗 Links
+
+- [React Docs](https://react.dev/)
+- [mathjs Docs](https://mathjs.org/)
+- [Create React App Docs](https://create-react-app.dev/)

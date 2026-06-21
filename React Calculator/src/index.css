@@ -1,14 +1,129 @@
-html {
-  box-sizing: border-box;
+/* ===== CSS Custom Properties — Aurora Neon Theme ===== */
+:root {
+	/* Neon palette */
+	--neon-cyan: #00f0ff;
+	--neon-magenta: #ff00aa;
+	--neon-gold: #ffb800;
+	--neon-purple: #a855f7;
+	--neon-blue: #3b82f6;
+	--neon-coral: #ff6b6b;
+
+	/* Backgrounds */
+	--bg-deep: #06060b;
+	--bg-card: rgba(12, 12, 20, 0.75);
+	--bg-display: rgba(8, 8, 16, 0.55);
+	--bg-keypad: rgba(8, 8, 14, 0.45);
+
+	/* Button colors */
+	--btn-digit: rgba(28, 28, 44, 0.85);
+	--btn-digit-hover: rgba(48, 48, 70, 0.9);
+	--btn-digit-active: rgba(18, 18, 32, 1);
+	--btn-function: rgba(38, 38, 54, 0.85);
+	--btn-function-hover: rgba(62, 62, 86, 0.9);
+	--btn-operator: linear-gradient(135deg, #ff8c00, #ffb800);
+	--btn-operator-hover: linear-gradient(135deg, #ffa030, #ffcc30);
+	--btn-equals: linear-gradient(135deg, #ff5500, #ff8c00);
+
+	/* Text */
+	--text-primary: #ffffff;
+	--text-secondary: rgba(255, 255, 255, 0.5);
+	--text-display: #ffffff;
+	--text-error: #ff4477;
+
+	/* Borders & Glows */
+	--border-glow: rgba(0, 240, 255, 0.3);
+	--glow-cyan: 0 0 20px rgba(0, 240, 255, 0.3);
+	--glow-gold: 0 0 20px rgba(255, 184, 0, 0.3);
+	--glow-magenta: 0 0 20px rgba(255, 0, 170, 0.25);
+	--glow-purple: 0 0 20px rgba(168, 85, 247, 0.25);
+
+	/* Typography */
+	--font-display: "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+	--font-body: "SF Pro Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+	/* Transitions */
+	--transition-fast: 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+	/* Radii */
+	--radius-sm: 10px;
+	--radius-md: 18px;
+	--radius-lg: 24px;
+	--radius-round: 50%;
 }
 
+/* ===== Reset ===== */
 *,
-*:before,
-*:after {
-  box-sizing: inherit;
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	box-sizing: border-box;
+	-webkit-text-size-adjust: 100%;
 }
 
 body {
-  margin: 0;
-  font: 100 14px 'Roboto';
+	font-family: var(--font-body);
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--text-primary);
+	background: var(--bg-deep);
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+}
+
+/* ===== Animated Aurora Background ===== */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 80% 60% at 20% 0%, rgba(168, 85, 247, 0.18) 0%, transparent 50%),
+		radial-gradient(ellipse 60% 60% at 80% 20%, rgba(0, 240, 255, 0.13) 0%, transparent 50%),
+		radial-gradient(ellipse 70% 50% at 50% 80%, rgba(255, 0, 170, 0.1) 0%, transparent 50%),
+		radial-gradient(ellipse 50% 40% at 60% 40%, rgba(59, 130, 246, 0.07) 0%, transparent 50%);
+	animation: aurora-drift 15s ease-in-out infinite;
+}
+
+@keyframes aurora-drift {
+	0%,
+	100% {
+		opacity: 0.7;
+		transform: scale(1) translate(0, 0);
+	}
+	25% {
+		opacity: 1;
+		transform: scale(1.08) translate(-1%, 1%);
+	}
+	50% {
+		opacity: 0.6;
+		transform: scale(0.95) translate(1%, -2%);
+	}
+	75% {
+		opacity: 0.9;
+		transform: scale(1.05) translate(2%, 1%);
+	}
+}
+
+/* Subtle grid overlay for texture */
+body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	opacity: 0.03;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+	background-size: 60px 60px;
 }

@@ -1,20 +1,20 @@
 // Dependencies
-import React from 'react';
+import React from "react";
 // Components
-import Calculator from './components/Calculator';
+import Calculator from "./components/Calculator/Calculator";
 // Styles
-import './App.css';
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-    <div className="wrapper">
-      <div className="calculator-wrapper"> 
-        <Calculator/>
-      </div>
-    </div>
-  </div>
-  );
+	return (
+		<div className="App">
+			<div className="wrapper">
+				<div className="calculator-wrapper">
+					<Calculator /> 
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default App;

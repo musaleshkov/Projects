@@ -1,0 +1,91 @@
+/* ===== Calculator Display ===== */
+.calculator-display {
+	flex: 1;
+	position: relative;
+	background: var(--bg-display);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding: 16px 24px 20px 24px;
+	gap: 4px;
+}
+
+/* Subtle inner glow at the bottom of the display */
+.calculator-display::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 40px;
+	background: linear-gradient(to top, rgba(168, 85, 247, 0.06), transparent);
+	pointer-events: none;
+}
+
+/* ===== Expression Line ===== */
+.display-expression {
+	font-family: var(--font-display);
+	font-weight: 300;
+	font-size: 1.05rem;
+	color: var(--text-secondary);
+	text-align: right;
+	width: 100%;
+	min-height: 1.4em;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	direction: ltr;
+	opacity: 0.75;
+	letter-spacing: 0.02em;
+	transition: color var(--transition-fast);
+}
+
+/* ===== Main Display Value ===== */
+.auto-scaling-text {
+	display: inline-block;
+	font-family: var(--font-display);
+	font-weight: 300;
+	font-size: 4.5rem;
+	color: var(--text-display);
+	text-shadow:
+		0 0 30px rgba(0, 240, 255, 0.2),
+		0 0 60px rgba(168, 85, 247, 0.1);
+	line-height: 1;
+	transform-origin: right bottom;
+	transform: var(--scale-factor, none);
+	transition:
+		transform var(--transition-fast),
+		color var(--transition-fast);
+	letter-spacing: -0.01em;
+	white-space: nowrap;
+	max-width: 100%;
+}
+
+/* ===== Error State ===== */
+.display-error {
+	color: #ff4477 !important;
+	text-shadow: 0 0 20px rgba(255, 68, 119, 0.4) !important;
+	animation: error-shake 0.4s ease-in-out;
+}
+
+@keyframes error-shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	20% {
+		transform: translateX(-4px);
+	}
+	40% {
+		transform: translateX(4px);
+	}
+	60% {
+		transform: translateX(-3px);
+	}
+	80% {
+		transform: translateX(3px);
+	}
+}

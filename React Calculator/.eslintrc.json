@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["error", "warn"]
+      }
+    ],
+    "prefer-const": "error",
+    "no-var": "error",
+    "eqeqeq": ["error", "always"]
+  }
+}
