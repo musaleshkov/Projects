@@ -9,7 +9,7 @@ export default function CalculatorDisplay({ value, expression, errorState }) {
 	const pointAt = `${value}`.indexOf(".");
 	const decimalValue = value.substring(pointAt, value.length);
 	const precisionWithFraction = pointAt === -1 ? 0 : decimalValue.length - 1;
-	let formattedValue;
+	let formattedValue; 
 
 	formattedValue = parseFloat(value).toLocaleString(undefined, {
 		minimumFractionDigits: precisionWithFraction,

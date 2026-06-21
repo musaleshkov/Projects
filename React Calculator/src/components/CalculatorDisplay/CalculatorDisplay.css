@@ -1,6 +1,6 @@
 /* ===== Calculator Display ===== */
 .calculator-display {
-	flex: 1;
+	flex: 0 0 28%;
 	position: relative;
 	background: var(--bg-display);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -9,31 +9,31 @@
 	flex-direction: column;
 	align-items: flex-end;
 	justify-content: flex-end;
-	padding: 16px 24px 20px 24px;
-	gap: 4px;
+	padding: 20px 28px 24px 28px;
+	gap: 6px;
 }
 
 /* Subtle inner glow at the bottom of the display */
 .calculator-display::after {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 40px;
 	background: linear-gradient(to top, rgba(168, 85, 247, 0.06), transparent);
+	bottom: 0;
+	content: "";
+	height: 40px;
+	left: 0;
 	pointer-events: none;
+	position: absolute;
+	right: 0;
 }
 
 /* ===== Expression Line ===== */
 .display-expression {
 	font-family: var(--font-display);
 	font-weight: 300;
-	font-size: 1.05rem;
+	font-size: 1.15rem;
 	color: var(--text-secondary);
 	text-align: right;
 	width: 100%;
-	min-height: 1.4em;
+	min-height: 1.5em;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -48,7 +48,7 @@
 	display: inline-block;
 	font-family: var(--font-display);
 	font-weight: 300;
-	font-size: 4.5rem;
+	font-size: 5.2rem;
 	color: var(--text-display);
 	text-shadow:
 		0 0 30px rgba(0, 240, 255, 0.2),
@@ -66,9 +66,9 @@
 
 /* ===== Error State ===== */
 .display-error {
+	animation: error-shake 0.4s ease-in-out;
 	color: #ff4477 !important;
 	text-shadow: 0 0 20px rgba(255, 68, 119, 0.4) !important;
-	animation: error-shake 0.4s ease-in-out;
 }
 
 @keyframes error-shake {
