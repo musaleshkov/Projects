@@ -10,7 +10,14 @@
 	border-radius: var(--border-radius-lg);
 	padding: var(--spacing-xl);
 	overflow: hidden;
-	animation: fadeInUp 0.5s var(--transition-slow) 0.25s both;
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.wallet-card--visible {
+	opacity: 1;
+	transform: translateY(0);
 }
 
 /* Subtle gradient border via pseudo-element */
@@ -31,6 +38,7 @@
 	align-items: center;
 	gap: var(--spacing-md);
 	margin-bottom: var(--spacing-xl);
+	animation: fadeInUp 0.4s ease 0.05s both;
 }
 
 .wallet-card__label {
@@ -47,6 +55,7 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: var(--spacing-md);
+	animation: fadeInUp 0.4s ease 0.1s both;
 }
 
 .wallet-card__network-badge {
@@ -94,7 +103,6 @@
 .wallet-card__copy-icon {
 	width: 16px;
 	height: 16px;
-	animation: checkmark 0.3s ease;
 }
 
 /* Address display */
@@ -106,6 +114,7 @@
 	background: var(--glass-bg);
 	border: 1px solid var(--glass-border);
 	border-radius: var(--border-radius);
+	animation: fadeInUp 0.4s ease 0.15s both;
 }
 
 .wallet-card__address-avatar {
@@ -130,6 +139,92 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+/* Portfolio USD value */
+.wallet-card__portfolio {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: var(--spacing-md);
+	padding: var(--spacing-md);
+	background: rgba(124, 58, 237, 0.05);
+	border: 1px solid rgba(124, 58, 237, 0.1);
+	border-radius: var(--border-radius);
+	animation: fadeInUp 0.4s ease 0.2s both;
+}
+
+.wallet-card__portfolio-label {
+	font-size: 0.75rem;
+	color: var(--color-text-secondary);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.wallet-card__portfolio-value {
+	font-family: var(--font-mono);
+	font-size: 1.25rem;
+	font-weight: 700;
+	background: var(--accent-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Quick Actions */
+.wallet-card__actions {
+	display: flex;
+	gap: var(--spacing-sm);
+	margin-top: var(--spacing-md);
+	opacity: 0;
+	transform: translateY(8px);
+	transition: opacity 0.4s ease 0.25s, transform 0.4s ease 0.25s;
+}
+
+.wallet-card__actions--visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.wallet-card__action-btn {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	padding: var(--spacing-md) var(--spacing-sm);
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius);
+	color: var(--color-text-secondary);
+	font-family: var(--font-sans);
+	font-size: 0.6875rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all var(--transition-fast);
+}
+
+.wallet-card__action-btn:hover {
+	background: var(--glass-hover);
+	color: var(--color-text-primary);
+	border-color: rgba(124, 58, 237, 0.2);
+}
+
+.wallet-card__action-icon-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background: rgba(124, 58, 237, 0.1);
+}
+
+.wallet-card__action-icon {
+	width: 16px;
+	height: 16px;
+	color: var(--color-accent);
 }
 
 /* Divider */

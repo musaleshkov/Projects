@@ -1,0 +1,229 @@
+.market-card {
+	position: relative;
+	width: 100%;
+	max-width: 700px;
+	background: var(--color-bg-card);
+	backdrop-filter: blur(24px);
+	-webkit-backdrop-filter: blur(24px);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius-lg);
+	padding: var(--spacing-lg);
+	overflow: hidden;
+	animation: fadeInUp 0.4s ease;
+}
+
+.market-card__border {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: var(--accent-gradient);
+	opacity: 0.6;
+}
+
+.market-card__header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: var(--spacing-md);
+}
+
+.market-card__title {
+	font-size: 1rem;
+	font-weight: 700;
+	color: var(--color-text-primary);
+}
+
+/* Live indicator */
+.market-card__live-dot {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	color: var(--color-success);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.market-card__live-dot-pulse {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: var(--color-success);
+	animation: livePulse 2s ease infinite;
+}
+
+@keyframes livePulse {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 rgba(63, 185, 80, 0.6);
+	}
+	50% {
+		box-shadow: 0 0 0 6px rgba(63, 185, 80, 0);
+	}
+}
+
+.market-card__search-wrapper {
+	margin-bottom: var(--spacing-md);
+}
+
+.market-card__list {
+	max-height: 520px;
+	overflow-y: auto;
+	padding-right: 4px;
+}
+
+/* Skeleton states */
+.market-skeleton {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-md);
+	padding: var(--spacing-sm) var(--spacing-md);
+	border-radius: var(--border-radius);
+}
+
+.market-skeleton__rank {
+	width: 40px;
+	height: 12px;
+	border-radius: 3px;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.03) 0%,
+		rgba(255, 255, 255, 0.07) 50%,
+		rgba(255, 255, 255, 0.03) 100%
+	);
+	background-size: 200% 100%;
+	animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.market-skeleton__asset {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	flex: 1;
+}
+
+.market-skeleton__icon {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.03) 0%,
+		rgba(255, 255, 255, 0.07) 50%,
+		rgba(255, 255, 255, 0.03) 100%
+	);
+	background-size: 200% 100%;
+	animation: shimmer 1.5s ease-in-out infinite;
+	flex-shrink: 0;
+}
+
+.market-skeleton__text {
+	height: 10px;
+	border-radius: 3px;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.03) 0%,
+		rgba(255, 255, 255, 0.07) 50%,
+		rgba(255, 255, 255, 0.03) 100%
+	);
+	background-size: 200% 100%;
+	animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.market-skeleton__text--name {
+	width: 70px;
+	margin-bottom: 4px;
+}
+
+.market-skeleton__text--symbol {
+	width: 40px;
+}
+
+.market-skeleton__text--spark {
+	width: 100px;
+	height: 28px;
+	display: none;
+}
+
+@media (min-width: 600px) {
+	.market-skeleton__text--spark {
+		display: block;
+	}
+}
+
+.market-skeleton__text--price {
+	width: 70px;
+}
+
+.market-skeleton__text--change {
+	width: 55px;
+}
+
+/* Error state */
+.market-card__error {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-md);
+	padding: var(--spacing-2xl) var(--spacing-xl);
+	text-align: center;
+}
+
+.market-card__error-icon {
+	width: 40px;
+	height: 40px;
+	color: var(--color-error);
+}
+
+.market-card__error-text {
+	font-size: 0.8125rem;
+	color: var(--color-text-secondary);
+}
+
+.market-card__retry-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	padding: var(--spacing-sm) var(--spacing-xl);
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius-xl);
+	color: var(--color-text-primary);
+	font-family: var(--font-sans);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all var(--transition-fast);
+}
+
+.market-card__retry-btn:hover {
+	background: var(--glass-hover);
+	border-color: rgba(124, 58, 237, 0.25);
+}
+
+/* Empty search result */
+.market-card__empty {
+	padding: var(--spacing-2xl);
+	text-align: center;
+	font-size: 0.8125rem;
+	color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 540px) {
+	.market-card {
+		padding: var(--spacing-md);
+		border-radius: var(--border-radius);
+	}
+
+	.coin-row__marketcap {
+		display: none;
+	}
+
+	.coin-list__header-label--mcap {
+		display: none;
+	}
+}
