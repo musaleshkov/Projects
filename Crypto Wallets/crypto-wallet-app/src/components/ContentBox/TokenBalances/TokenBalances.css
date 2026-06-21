@@ -7,11 +7,11 @@
 
 /* Token Row */
 .token-row {
-	display: flex;
 	align-items: center;
+	border-radius: var(--border-radius);
+	display: flex;
 	justify-content: space-between;
 	padding: var(--spacing-sm) var(--spacing-md);
-	border-radius: var(--border-radius);
 	transition: background var(--transition-fast);
 }
 
@@ -20,46 +20,46 @@
 }
 
 .token-row__left {
-	display: flex;
 	align-items: center;
+	display: flex;
 	gap: var(--spacing-md);
 	min-width: 0;
 }
 
 /* Token icon */
 .token-row__icon-wrapper {
-	width: 36px;
-	height: 36px;
-	flex-shrink: 0;
-	border-radius: 50%;
-	overflow: hidden;
-	display: flex;
 	align-items: center;
+	border-radius: 50%;
+	display: flex;
+	flex-shrink: 0;
+	height: 36px;
 	justify-content: center;
+	overflow: hidden;
+	width: 36px;
 }
 
 .token-row__icon {
-	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	width: 100%;
 }
 
 .token-row__icon-svg {
-	width: 100%;
 	height: 100%;
+	width: 100%;
 }
 
 .token-row__fallback {
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-	background: var(--accent-gradient);
-	display: flex;
 	align-items: center;
-	justify-content: center;
+	background: var(--accent-gradient);
+	border-radius: 50%;
+	color: white;
+	display: flex;
 	font-size: 0.875rem;
 	font-weight: 700;
-	color: white;
+	height: 100%;
+	justify-content: center;
+	width: 100%;
 }
 
 /* Token info */
@@ -71,33 +71,33 @@
 }
 
 .token-row__symbol {
+	color: var(--color-text-primary);
 	font-size: 0.9375rem;
 	font-weight: 600;
-	color: var(--color-text-primary);
 }
 
 .token-row__decimals {
-	font-size: 0.75rem;
 	color: var(--color-text-tertiary);
+	font-size: 0.75rem;
 }
 
 /* Balance */
 .token-row__balance {
+	color: var(--color-text-primary);
+	flex-shrink: 0;
 	font-family: var(--font-mono);
 	font-size: 0.9375rem;
 	font-weight: 500;
-	color: var(--color-text-primary);
-	text-align: right;
-	flex-shrink: 0;
 	margin-left: var(--spacing-lg);
+	text-align: right;
 }
 
 /* State messages */
 .token-balance-state {
-	text-align: center;
-	padding: var(--spacing-xl);
 	color: var(--color-text-secondary);
 	font-size: 0.875rem;
+	padding: var(--spacing-xl);
+	text-align: center;
 }
 
 .token-balance-error {
@@ -106,17 +106,15 @@
 
 /* Skeleton shimmer placeholders */
 .token-skeleton {
-	display: flex;
 	align-items: center;
+	border-radius: var(--border-radius);
+	display: flex;
 	justify-content: space-between;
 	padding: var(--spacing-sm) var(--spacing-md);
-	border-radius: var(--border-radius);
 }
 
 .token-skeleton__icon {
-	width: 36px;
-	height: 36px;
-	border-radius: 50%;
+	animation: shimmer 1.5s ease-in-out infinite;
 	background: linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.03) 0%,
@@ -124,13 +122,14 @@
 		rgba(255, 255, 255, 0.03) 100%
 	);
 	background-size: 200% 100%;
-	animation: shimmer 1.5s ease-in-out infinite;
+	border-radius: 50%;
 	flex-shrink: 0;
+	height: 36px;
+	width: 36px;
 }
 
 .token-skeleton__text {
-	height: 14px;
-	border-radius: 4px;
+	animation: shimmer 1.5s ease-in-out infinite;
 	background: linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.03) 0%,
@@ -138,23 +137,24 @@
 		rgba(255, 255, 255, 0.03) 100%
 	);
 	background-size: 200% 100%;
-	animation: shimmer 1.5s ease-in-out infinite;
+	border-radius: 4px;
+	height: 14px;
 }
 
 .token-skeleton__text--name {
-	width: 80px;
 	margin-bottom: 4px;
+	width: 80px;
 }
 
 .token-skeleton__text--decimals {
-	width: 60px;
 	height: 10px;
+	width: 60px;
 }
 
 .token-skeleton__text--balance {
-	width: 90px;
 	height: 14px;
 	margin-left: auto;
+	width: 90px;
 }
 
 .token-skeleton__info {
@@ -166,27 +166,40 @@
 
 /* Empty state */
 .token-balance-empty {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: var(--spacing-md);
 	padding: var(--spacing-2xl) var(--spacing-lg);
 	text-align: center;
 }
 
 .token-balance-empty__icon {
-	width: 48px;
-	height: 48px;
 	color: var(--color-text-tertiary);
+	height: 48px;
 	opacity: 0.5;
+	width: 48px;
 }
 
 .token-balance-empty__text {
-	font-size: 0.875rem;
 	color: var(--color-text-secondary);
+	font-size: 0.875rem;
 }
 
 .token-balance-empty__subtext {
-	font-size: 0.75rem;
 	color: var(--color-text-tertiary);
+	font-size: 0.75rem;
+}
+
+/* Error state detail styling */
+.token-balance-error-icon {
+	display: block;
+	height: 1.5rem;
+	margin: 0 auto 0.5rem;
+	width: 1.5rem;
+}
+
+.token-balance-error-detail {
+	font-size: 0.75rem;
+	margin-top: 0.25rem;
 }

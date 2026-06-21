@@ -1,26 +1,26 @@
 .connect-button {
-	position: relative;
-	width: 100%;
-	max-width: 360px;
-	padding: var(--spacing-lg) var(--spacing-2xl);
+	animation: fadeInUp 0.5s var(--transition-slow) 0.2s both;
 	background: var(--glass-bg);
 	border: 1px solid var(--glass-border);
 	border-radius: var(--border-radius-xl);
 	color: var(--color-text-primary);
+	cursor: pointer;
 	font-family: var(--font-sans);
 	font-size: 1rem;
 	font-weight: 600;
-	cursor: pointer;
+	max-width: 360px;
 	overflow: hidden;
+	padding: var(--spacing-lg) var(--spacing-2xl);
+	position: relative;
 	transition: all var(--transition-base);
-	animation: fadeInUp 0.5s var(--transition-slow) 0.2s both;
+	width: 100%;
 }
 
 .connect-button:hover {
 	background: var(--glass-hover);
 	border-color: rgba(124, 58, 237, 0.3);
-	transform: translateY(-1px);
 	box-shadow: var(--shadow-glow);
+	transform: translateY(-1px);
 }
 
 .connect-button:active {
@@ -28,45 +28,45 @@
 }
 
 .connect-button:disabled {
-	opacity: 0.7;
 	cursor: wait;
+	opacity: 0.7;
 	transform: none;
 }
 
 .connect-button__content {
+	align-items: center;
+	display: flex;
+	gap: var(--spacing-md);
+	justify-content: center;
 	position: relative;
 	z-index: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: var(--spacing-md);
 }
 
 .connect-button__icon {
-	width: 1.5rem;
-	height: 1.5rem;
 	flex-shrink: 0;
+	height: 1.5rem;
+	width: 1.5rem;
 }
 
 .connect-button__spinner {
-	width: 1.25rem;
-	height: 1.25rem;
-	border: 2px solid rgba(255, 255, 255, 0.15);
-	border-top-color: var(--color-accent);
-	border-radius: 50%;
 	animation: spin 0.7s linear infinite;
+	border: 2px solid rgba(255, 255, 255, 0.15);
+	border-radius: 50%;
+	border-top-color: var(--color-accent);
+	height: 1.25rem;
+	width: 1.25rem;
 }
 
 /* Gradient glow ring */
 .connect-button__glow {
-	position: absolute;
-	inset: -2px;
-	border-radius: inherit;
 	background: var(--accent-gradient);
-	opacity: 0;
-	z-index: 0;
-	transition: opacity var(--transition-base);
+	border-radius: inherit;
 	filter: blur(8px);
+	inset: -2px;
+	opacity: 0;
+	position: absolute;
+	transition: opacity var(--transition-base);
+	z-index: 0;
 }
 
 .connect-button:hover .connect-button__glow {
@@ -74,6 +74,6 @@
 }
 
 .connect-button--loading .connect-button__glow {
-	opacity: 0.3;
 	animation: pulseGlow 2s ease infinite;
+	opacity: 0.3;
 }

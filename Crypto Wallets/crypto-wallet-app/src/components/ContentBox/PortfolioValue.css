@@ -1,0 +1,28 @@
+.portfolio-value {
+	align-items: center;
+	background: rgba(124, 58, 237, 0.05);
+	border: 1px solid rgba(124, 58, 237, 0.1);
+	border-radius: var(--border-radius);
+	display: flex;
+	justify-content: space-between;
+	margin-top: var(--spacing-md);
+	padding: var(--spacing-md);
+}
+
+.portfolio-value__label {
+	color: var(--color-text-secondary);
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.portfolio-value__amount {
+	background: var(--accent-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	font-family: var(--font-mono);
+	font-size: 1.25rem;
+	font-weight: 700;
+	-webkit-text-fill-color: transparent;
+}

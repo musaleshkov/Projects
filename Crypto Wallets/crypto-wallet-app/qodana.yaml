@@ -1,0 +1,34 @@
+# Qodana Configuration
+# https://www.jetbrains.com/help/qodana/
+
+version: "1.0"
+
+profile:
+  name: qodana.recommended
+
+exclude:
+  - name: All
+    paths:
+      - node_modules
+      - build
+      - coverage
+      - public
+      - .git
+      - .yarn
+      - "*.test.ts"
+      - "*.test.tsx"
+      - "*.spec.ts"
+      - "*.spec.tsx"
+
+linter: jetbrains/qodana-js:latest
+
+include:
+  - name: EcmaScript6
+  - name: TypeScript
+  - name: React
+  - name: JSX
+  - name: Css
+  - name: Html
+
+plugins:
+  - id: SonarJS

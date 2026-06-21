@@ -1,9 +1,10 @@
-import { FunctionComponent, useCallback, useEffect, useRef, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useRef, useState, memo } from "react";
 import { Contract, formatUnits } from "ethers";
 import { Icon } from "@iconify/react";
 import { useWallet } from "../../../contexts/WalletContext";
 import { TokenBalanceItem } from "../../../types";
 import { erc20ABI } from "../../../abi/erc20-abi";
+import { KNOWN_TOKENS } from "../../../constants/known-tokens";
 import { getNativeSymbol, getNativeIcon } from "../../../utils/chain";
 import TokenBalanceRow from "./TokenBalanceRow/TokenBalanceRow";
 import "./TokenBalances.css";
@@ -11,33 +12,7 @@ import "./TokenBalances.css";
 const SKELETON_COUNT = 4;
 const LOADING_TIMEOUT_MS = 25000;
 
-interface TokenInfo {
-	symbol: string;
-	address: string;
-	decimals: number;
-}
-
-// Curated list of known tokens per chain (chainId -> tokens)
-const KNOWN_TOKENS: Record<number, TokenInfo[]> = {
-	1: [
-		{ symbol: "USDT", address: "0xdAC17F958D2ee523a2206206994597C13D831ec7", decimals: 6 },
-		{ symbol: "USDC", address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", decimals: 6 },
-		{ symbol: "DAI", address: "0x6B175474E89094C44Da98b954EedeAC495271d0F", decimals: 18 },
-		{ symbol: "UNI", address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984", decimals: 18 },
-		{ symbol: "LINK", address: "0x514910771AF9Ca656af840dff83E8264EcF986CA", decimals: 18 },
-	],
-	137: [
-		{ symbol: "USDT", address: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F", decimals: 6 },
-		{ symbol: "USDC", address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359", decimals: 6 },
-	],
-	56: [
-		{ symbol: "USDT", address: "0x55d398326f99059fF775485246999027B3197955", decimals: 18 },
-		{ symbol: "USDC", address: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d", decimals: 18 },
-	],
-	97: [],
-};
-
-const TokenBalances: FunctionComponent = () => {
+const TokenBalances: FunctionComponent = memo(() => {
 	const { signer, account, chainId, nativeBalance, isLoadingBalance, balanceError } = useWallet();
 	const [tokens, setTokens] = useState<TokenBalanceItem[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -66,26 +41,31 @@ const TokenBalances: FunctionComponent = () => {
 			return;
 		}
 
-		const results: TokenBalanceItem[] = [];
-
-		for (const token of chainTokens) {
+		// Parallelize all token balance fetches
+		const balancePromises = chainTokens.map(async (token) => {
 			try {
 				const contract = new Contract(token.address, erc20ABI, signer);
 				const balance = await contract.balanceOf(account);
 				const formatted = formatUnits(balance, token.decimals);
-
 				if (Number(formatted) > 0) {
-					results.push({
+					return {
 						symbol: token.symbol,
 						balance: Number(formatted).toFixed(4),
 						decimals: token.decimals,
 						tokenAddress: token.address,
-					});
+					} as TokenBalanceItem;
 				}
 			} catch {
 				// Skip individual token failures
 			}
-		}
+			return null;
+		});
+
+		const settled = await Promise.allSettled(balancePromises);
+		const results = settled
+			.filter((r) => r.status === "fulfilled" && r.value !== null)
+			.map((r) => (r as PromiseFulfilledResult<TokenBalanceItem | null>).value!)
+			.filter(Boolean);
 
 		if (fetchId === fetchIdRef.current) {
 			setTokens(results);
@@ -100,7 +80,6 @@ const TokenBalances: FunctionComponent = () => {
 		}
 	}, [signer, account, fetchBalances]);
 
-	// Refetch when chain changes
 	useEffect(() => {
 		if (signer && account) {
 			hasFetchedRef.current = true;
@@ -112,16 +91,13 @@ const TokenBalances: FunctionComponent = () => {
 	// Timeout safety
 	useEffect(() => {
 		if (!isLoading) return;
-		const timer = setTimeout(() => {
-			if (isLoading) setTimedOut(true);
-		}, LOADING_TIMEOUT_MS);
+		const timer = setTimeout(() => { if (isLoading) setTimedOut(true); }, LOADING_TIMEOUT_MS);
 		return () => clearTimeout(timer);
 	}, [isLoading]);
 
 	const showLoading = !timedOut && (isLoading || isLoadingBalance);
 	const hasTokenError = error || (timedOut ? "Loading timed out" : null);
 
-	// Skeleton state
 	if (showLoading) {
 		return (
 			<div className="token-balance-wrapper">
@@ -139,29 +115,25 @@ const TokenBalances: FunctionComponent = () => {
 		);
 	}
 
-	// Error state
 	if (hasTokenError || balanceError) {
 		const message = hasTokenError || balanceError || "Unknown error";
 		return (
 			<div className="token-balance-wrapper">
 				<div className="token-balance-state token-balance-error">
-					<Icon icon="ph:warning-circle-bold" style={{ fontSize: "1.5rem", margin: "0 auto 0.5rem", display: "block" }} />
+					<Icon className="token-balance-error-icon" icon="ph:warning-circle-bold" />
 					<div>Failed to load balances</div>
-					<div style={{ fontSize: "0.75rem", marginTop: "0.25rem" }}>{message}</div>
+					<div className="token-balance-error-detail">{message}</div>
 				</div>
 			</div>
 		);
 	}
 
-	// Empty state
 	if (tokens.length === 0 && Number(nativeBalance) === 0) {
 		return (
 			<div className="token-balance-empty">
 				<Icon className="token-balance-empty__icon" icon="ph:wallet-bold" />
 				<span className="token-balance-empty__text">No tokens found</span>
-				<span className="token-balance-empty__subtext">
-					Your wallet has no tokens on this chain
-				</span>
+				<span className="token-balance-empty__subtext">Your wallet has no tokens on this chain</span>
 			</div>
 		);
 	}
@@ -176,7 +148,6 @@ const TokenBalances: FunctionComponent = () => {
 					decimals={token.decimals}
 				/>
 			))}
-
 			{Number(nativeBalance) > 0 && (
 				<TokenBalanceRow
 					symbol={getNativeSymbol(chainId)}
@@ -187,6 +158,6 @@ const TokenBalances: FunctionComponent = () => {
 			)}
 		</div>
 	);
-};
+});
 
 export default TokenBalances;

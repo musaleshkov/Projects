@@ -7,7 +7,7 @@ const ConnectButton: FunctionComponent = () => {
 	const { connect, isConnecting } = useWallet();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const handleConnect = async () => {
+	const handleConnect = async () => { 
 		setIsLoading(true);
 		try {
 			await connect();

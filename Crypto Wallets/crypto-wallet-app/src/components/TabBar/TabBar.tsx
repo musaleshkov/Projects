@@ -16,7 +16,7 @@ const TabBar: FunctionComponent<TabBarProps> = ({ activeTab, onTabChange }) => {
 				Wallet
 				{activeTab === "wallet" && <div className="tab-bar__indicator" />}
 			</button>
-			<button
+			<button 
 				className={`tab-bar__tab ${activeTab === "market" ? "tab-bar__tab--active" : ""}`}
 				onClick={() => onTabChange("market")}
 			>

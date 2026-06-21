@@ -1,9 +1,9 @@
 import { FunctionComponent, useEffect, useRef, useState } from "react";
 import { Icon } from "@iconify/react";
-import { useWallet } from "../../../contexts/WalletContext";
 import { SUPPORTED_CHAINS } from "../../../constants/supported-chains";
 import { getChainName } from "../../../utils/chain";
 import "./ChainsOptionsDropdown.css";
+import { useWallet } from "../../../contexts/WalletContext";
 
 const CHAIN_ICONS: Record<number, string> = {
 	1: "logos:ethereum",

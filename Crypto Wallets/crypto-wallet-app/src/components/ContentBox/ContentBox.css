@@ -1,18 +1,18 @@
 /* Wallet Card — glassmorphism card */
 .wallet-card {
-	position: relative;
-	width: 100%;
-	max-width: 500px;
-	background: var(--color-bg-card);
-	backdrop-filter: blur(24px);
 	-webkit-backdrop-filter: blur(24px);
+	backdrop-filter: blur(24px);
+	background: var(--color-bg-card);
 	border: 1px solid var(--glass-border);
 	border-radius: var(--border-radius-lg);
-	padding: var(--spacing-xl);
-	overflow: hidden;
+	max-width: 500px;
 	opacity: 0;
+	overflow: hidden;
+	padding: var(--spacing-xl);
+	position: relative;
 	transform: translateY(12px);
 	transition: opacity 0.5s ease, transform 0.5s ease;
+	width: 100%;
 }
 
 .wallet-card--visible {
@@ -22,71 +22,71 @@
 
 /* Subtle gradient border via pseudo-element */
 .wallet-card__border {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 2px;
 	background: var(--accent-gradient);
+	height: 2px;
+	left: 0;
 	opacity: 0.6;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 /* Header row */
 .wallet-card__header {
-	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	gap: var(--spacing-md);
-	margin-bottom: var(--spacing-xl);
 	animation: fadeInUp 0.4s ease 0.05s both;
+	display: flex;
+	gap: var(--spacing-md);
+	justify-content: space-between;
+	margin-bottom: var(--spacing-xl);
 }
 
 .wallet-card__label {
+	color: var(--color-text-secondary);
 	font-size: 0.875rem;
 	font-weight: 600;
-	color: var(--color-text-secondary);
-	text-transform: uppercase;
 	letter-spacing: 0.05em;
+	text-transform: uppercase;
 }
 
 /* Network badge */
 .wallet-card__address-row {
+	align-items: center;
+	animation: fadeInUp 0.4s ease 0.1s both;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	margin-bottom: var(--spacing-md);
-	animation: fadeInUp 0.4s ease 0.1s both;
 }
 
 .wallet-card__network-badge {
-	display: flex;
 	align-items: center;
-	gap: var(--spacing-sm);
-	font-size: 0.8125rem;
 	color: var(--color-text-secondary);
+	display: flex;
+	font-size: 0.8125rem;
+	gap: var(--spacing-sm);
 }
 
 .wallet-card__network-dot {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
 	background: var(--color-success);
+	border-radius: 50%;
 	box-shadow: 0 0 8px rgba(63, 185, 80, 0.4);
+	height: 8px;
+	width: 8px;
 }
 
 /* Copy button */
 .wallet-card__copy-btn {
-	display: flex;
 	align-items: center;
-	justify-content: center;
-	width: 32px;
-	height: 32px;
-	border-radius: var(--border-radius-sm);
 	background: var(--glass-bg);
 	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius-sm);
 	color: var(--color-text-secondary);
 	cursor: pointer;
+	display: flex;
+	height: 32px;
+	justify-content: center;
 	transition: all var(--transition-fast);
+	width: 32px;
 }
 
 .wallet-card__copy-btn:hover {
@@ -101,41 +101,41 @@
 }
 
 .wallet-card__copy-icon {
-	width: 16px;
 	height: 16px;
+	width: 16px;
 }
 
 /* Address display */
 .wallet-card__address-wrapper {
-	display: flex;
 	align-items: center;
-	gap: var(--spacing-md);
-	padding: var(--spacing-md);
+	animation: fadeInUp 0.4s ease 0.15s both;
 	background: var(--glass-bg);
 	border: 1px solid var(--glass-border);
 	border-radius: var(--border-radius);
-	animation: fadeInUp 0.4s ease 0.15s both;
+	display: flex;
+	gap: var(--spacing-md);
+	padding: var(--spacing-md);
 }
 
 .wallet-card__address-avatar {
-	width: 36px;
-	height: 36px;
-	flex-shrink: 0;
-	border-radius: var(--border-radius-sm);
-	background: var(--accent-gradient);
-	display: flex;
 	align-items: center;
-	justify-content: center;
+	background: var(--accent-gradient);
+	border-radius: var(--border-radius-sm);
+	color: white;
+	display: flex;
+	flex-shrink: 0;
 	font-family: var(--font-mono);
 	font-size: 0.75rem;
 	font-weight: 700;
-	color: white;
+	height: 36px;
+	justify-content: center;
+	width: 36px;
 }
 
 .wallet-card__address {
+	color: var(--color-text-primary);
 	font-family: var(--font-mono);
 	font-size: 0.9375rem;
-	color: var(--color-text-primary);
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -143,33 +143,33 @@
 
 /* Portfolio USD value */
 .wallet-card__portfolio {
-	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	margin-top: var(--spacing-md);
-	padding: var(--spacing-md);
+	animation: fadeInUp 0.4s ease 0.2s both;
 	background: rgba(124, 58, 237, 0.05);
 	border: 1px solid rgba(124, 58, 237, 0.1);
 	border-radius: var(--border-radius);
-	animation: fadeInUp 0.4s ease 0.2s both;
+	display: flex;
+	justify-content: space-between;
+	margin-top: var(--spacing-md);
+	padding: var(--spacing-md);
 }
 
 .wallet-card__portfolio-label {
-	font-size: 0.75rem;
 	color: var(--color-text-secondary);
+	font-size: 0.75rem;
 	font-weight: 500;
-	text-transform: uppercase;
 	letter-spacing: 0.05em;
+	text-transform: uppercase;
 }
 
 .wallet-card__portfolio-value {
+	background: var(--accent-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
 	font-family: var(--font-mono);
 	font-size: 1.25rem;
 	font-weight: 700;
-	background: var(--accent-gradient);
-	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	background-clip: text;
 }
 
 /* Quick Actions */
@@ -188,57 +188,57 @@
 }
 
 .wallet-card__action-btn {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
 	align-items: center;
-	gap: 4px;
-	padding: var(--spacing-md) var(--spacing-sm);
 	background: var(--glass-bg);
 	border: 1px solid var(--glass-border);
 	border-radius: var(--border-radius);
 	color: var(--color-text-secondary);
+	cursor: pointer;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
 	font-family: var(--font-sans);
 	font-size: 0.6875rem;
 	font-weight: 500;
-	cursor: pointer;
+	gap: 4px;
+	padding: var(--spacing-md) var(--spacing-sm);
 	transition: all var(--transition-fast);
 }
 
 .wallet-card__action-btn:hover {
 	background: var(--glass-hover);
-	color: var(--color-text-primary);
 	border-color: rgba(124, 58, 237, 0.2);
+	color: var(--color-text-primary);
 }
 
 .wallet-card__action-icon-wrapper {
-	display: flex;
 	align-items: center;
+	background: rgba(124, 58, 237, 0.1);
+	border-radius: 50%;
+	display: flex;
+	height: 32px;
 	justify-content: center;
 	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-	background: rgba(124, 58, 237, 0.1);
 }
 
 .wallet-card__action-icon {
-	width: 16px;
-	height: 16px;
 	color: var(--color-accent);
+	height: 16px;
+	width: 16px;
 }
 
 /* Divider */
 .wallet-card__divider {
-	height: 1px;
 	background: var(--glass-border);
+	height: 1px;
 	margin: var(--spacing-lg) 0;
 }
 
 /* Responsive */
 @media (max-width: 540px) {
 	.wallet-card {
-		padding: var(--spacing-lg);
 		border-radius: var(--border-radius);
+		padding: var(--spacing-lg);
 	}
 
 	.wallet-card__address-wrapper {

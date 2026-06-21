@@ -1,20 +1,18 @@
-import { FunctionComponent, useState, useCallback, useEffect, useMemo } from "react";
+import { FunctionComponent, useState, useCallback, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useWallet } from "../../contexts/WalletContext";
 import { useToast } from "../Toast/Toast";
-import { useNativePrice } from "../../hooks/useNativePrice";
 import ChainsOptionsDropdown from "./ChainsOptionsDropdown/ChainsOptionsDropdown";
 import TokenBalances from "./TokenBalances/TokenBalances";
+import PortfolioValue from "./PortfolioValue";
 import "./ContentBox.css";
 
 const ContentBox: FunctionComponent = () => {
-	const { account, chainId, nativeBalance } = useWallet();
+	const { account, chainId } = useWallet();
 	const { addToast } = useToast();
-	const { price: nativePrice } = useNativePrice(chainId);
 	const [copied, setCopied] = useState(false);
 	const [visible, setVisible] = useState(false);
 
-	// Staggered entrance
 	useEffect(() => {
 		const t = setTimeout(() => setVisible(true), 50);
 		return () => clearTimeout(t);
@@ -33,12 +31,6 @@ const ContentBox: FunctionComponent = () => {
 			setTimeout(() => setCopied(false), 2000);
 		});
 	}, [account, addToast]);
-
-	// USD portfolio value
-	const portfolioUSD = useMemo(() => {
-		if (!nativePrice || !nativeBalance) return null;
-		return (Number(nativeBalance) * nativePrice).toFixed(2);
-	}, [nativePrice, nativeBalance]);
 
 	const handleSend = () => {
 		if (account && window.ethereum) {
@@ -106,15 +98,8 @@ const ContentBox: FunctionComponent = () => {
 				<code className="wallet-card__address">{truncateAddress(account)}</code>
 			</div>
 
-			{/* Portfolio USD */}
-			{portfolioUSD && (
-				<div className="wallet-card__portfolio" style={visible ? { animationDelay: "0.1s" } : undefined}>
-					<span className="wallet-card__portfolio-label">Portfolio Value</span>
-					<span className="wallet-card__portfolio-value">${portfolioUSD}</span>
-				</div>
-			)}
+			<PortfolioValue />
 
-			{/* Quick Actions */}
 			<div className={`wallet-card__actions ${visible ? "wallet-card__actions--visible" : ""}`}>
 				<button className="wallet-card__action-btn" onClick={handleSend}>
 					<div className="wallet-card__action-icon-wrapper">

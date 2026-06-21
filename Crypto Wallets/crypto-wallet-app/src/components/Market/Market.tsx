@@ -13,7 +13,7 @@ const SKELETON_ROWS = 8;
 const Market: FunctionComponent = () => {
 	const { coins, isLoading, error, refetch } = useMarketData();
 	const [search, setSearch] = useState("");
-	const [sortKey, setSortKey] = useState<SortKey>("rank");
+	const [sortKey, setSortKey] = useState<SortKey>("rank"); 
 	const [sortDir, setSortDir] = useState<SortDir>("asc");
 
 	const toggleSort = (key: SortKey) => {

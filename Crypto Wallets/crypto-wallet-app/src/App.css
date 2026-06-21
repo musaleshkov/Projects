@@ -1,78 +1,78 @@
 .App {
-	min-height: 100vh;
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	min-height: 100vh;
 	position: relative;
 }
 
 /* Animated mesh gradient background */
 .App::before {
-	content: "";
-	position: fixed;
-	inset: 0;
-	z-index: 0;
+	animation: meshGradient 15s ease infinite;
 	background: radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
 		radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
 		radial-gradient(ellipse at 50% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
 		var(--color-bg-primary);
 	background-size: 200% 200%;
-	animation: meshGradient 15s ease infinite;
+	content: "";
+	inset: 0;
+	position: fixed;
+	z-index: 0;
 }
 
 /* Dot pattern overlay */
 .App::after {
-	content: "";
-	position: fixed;
-	inset: 0;
-	z-index: 0;
-	opacity: 0.03;
 	background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px);
 	background-size: 24px 24px;
+	content: "";
+	inset: 0;
+	opacity: 0.03;
 	pointer-events: none;
+	position: fixed;
+	z-index: 0;
 }
 
 /* App Header */
 .app-header {
-	position: relative;
-	z-index: 1;
-	width: 100%;
 	max-width: 640px;
 	padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-xl);
+	position: relative;
 	text-align: center;
+	width: 100%;
+	z-index: 1;
 }
 
 .app-title {
+	animation: fadeInUp 0.6s var(--transition-slow);
+	background: var(--accent-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
 	font-size: 2rem;
 	font-weight: 800;
 	letter-spacing: -0.03em;
-	background: var(--accent-gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
 	margin-bottom: var(--spacing-xs);
-	animation: fadeInUp 0.6s var(--transition-slow);
+	-webkit-text-fill-color: transparent;
 }
 
 .app-subtitle {
-	font-size: 0.875rem;
-	color: var(--color-text-secondary);
-	font-weight: 400;
 	animation: fadeInUp 0.6s var(--transition-slow) 0.1s both;
+	color: var(--color-text-secondary);
+	font-size: 0.875rem;
+	font-weight: 400;
 }
 
 /* Main content area */
 .app-content {
-	position: relative;
-	z-index: 1;
-	width: 100%;
-	max-width: 640px;
-	padding: 0 var(--spacing-lg) var(--spacing-3xl);
+	align-items: center;
+	animation: fadeInUp 0.6s var(--transition-slow) 0.15s both;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: var(--spacing-xl);
-	animation: fadeInUp 0.6s var(--transition-slow) 0.15s both;
+	max-width: 640px;
+	padding: 0 var(--spacing-lg) var(--spacing-3xl);
+	position: relative;
+	width: 100%;
+	z-index: 1;
 }
 
 /* Responsive */

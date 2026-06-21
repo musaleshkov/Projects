@@ -22,7 +22,7 @@ const TokenBalanceRow: FunctionComponent<TokenBalanceRowProps> = ({
 
 	return (
 		<div className="token-row">
-			<div className="token-row__left">
+			<div className="token-row__left"> 
 				{/* Token icon */}
 				<div className="token-row__icon-wrapper">
 					{thumbnail && !imgError ? (

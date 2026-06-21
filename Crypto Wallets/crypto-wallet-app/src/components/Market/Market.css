@@ -1,58 +1,58 @@
 .market-card {
-	position: relative;
-	width: 100%;
-	max-width: 700px;
-	background: var(--color-bg-card);
-	backdrop-filter: blur(24px);
+	animation: fadeInUp 0.4s ease;
 	-webkit-backdrop-filter: blur(24px);
+	backdrop-filter: blur(24px);
+	background: var(--color-bg-card);
 	border: 1px solid var(--glass-border);
 	border-radius: var(--border-radius-lg);
-	padding: var(--spacing-lg);
+	max-width: 700px;
 	overflow: hidden;
-	animation: fadeInUp 0.4s ease;
+	padding: var(--spacing-lg);
+	position: relative;
+	width: 100%;
 }
 
 .market-card__border {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 2px;
 	background: var(--accent-gradient);
+	height: 2px;
+	left: 0;
 	opacity: 0.6;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 .market-card__header-row {
+	align-items: center;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	margin-bottom: var(--spacing-md);
 }
 
 .market-card__title {
+	color: var(--color-text-primary);
 	font-size: 1rem;
 	font-weight: 700;
-	color: var(--color-text-primary);
 }
 
 /* Live indicator */
 .market-card__live-dot {
-	display: flex;
 	align-items: center;
-	gap: 6px;
+	color: var(--color-success);
+	display: flex;
 	font-size: 0.6875rem;
 	font-weight: 600;
-	color: var(--color-success);
-	text-transform: uppercase;
+	gap: 6px;
 	letter-spacing: 0.05em;
+	text-transform: uppercase;
 }
 
 .market-card__live-dot-pulse {
-	width: 7px;
-	height: 7px;
-	border-radius: 50%;
-	background: var(--color-success);
 	animation: livePulse 2s ease infinite;
+	background: var(--color-success);
+	border-radius: 50%;
+	height: 7px;
+	width: 7px;
 }
 
 @keyframes livePulse {
@@ -77,17 +77,15 @@
 
 /* Skeleton states */
 .market-skeleton {
-	display: flex;
 	align-items: center;
+	border-radius: var(--border-radius);
+	display: flex;
 	gap: var(--spacing-md);
 	padding: var(--spacing-sm) var(--spacing-md);
-	border-radius: var(--border-radius);
 }
 
 .market-skeleton__rank {
-	width: 40px;
-	height: 12px;
-	border-radius: 3px;
+	animation: shimmer 1.5s ease-in-out infinite;
 	background: linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.03) 0%,
@@ -95,20 +93,20 @@
 		rgba(255, 255, 255, 0.03) 100%
 	);
 	background-size: 200% 100%;
-	animation: shimmer 1.5s ease-in-out infinite;
+	border-radius: 3px;
+	height: 12px;
+	width: 40px;
 }
 
 .market-skeleton__asset {
-	display: flex;
 	align-items: center;
-	gap: var(--spacing-sm);
+	display: flex;
 	flex: 1;
+	gap: var(--spacing-sm);
 }
 
 .market-skeleton__icon {
-	width: 28px;
-	height: 28px;
-	border-radius: 50%;
+	animation: shimmer 1.5s ease-in-out infinite;
 	background: linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.03) 0%,
@@ -116,13 +114,14 @@
 		rgba(255, 255, 255, 0.03) 100%
 	);
 	background-size: 200% 100%;
-	animation: shimmer 1.5s ease-in-out infinite;
+	border-radius: 50%;
 	flex-shrink: 0;
+	height: 28px;
+	width: 28px;
 }
 
 .market-skeleton__text {
-	height: 10px;
-	border-radius: 3px;
+	animation: shimmer 1.5s ease-in-out infinite;
 	background: linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.03) 0%,
@@ -130,12 +129,13 @@
 		rgba(255, 255, 255, 0.03) 100%
 	);
 	background-size: 200% 100%;
-	animation: shimmer 1.5s ease-in-out infinite;
+	border-radius: 3px;
+	height: 10px;
 }
 
 .market-skeleton__text--name {
-	width: 70px;
 	margin-bottom: 4px;
+	width: 70px;
 }
 
 .market-skeleton__text--symbol {
@@ -143,9 +143,9 @@
 }
 
 .market-skeleton__text--spark {
-	width: 100px;
-	height: 28px;
 	display: none;
+	height: 28px;
+	width: 100px;
 }
 
 @media (min-width: 600px) {
@@ -164,38 +164,38 @@
 
 /* Error state */
 .market-card__error {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: var(--spacing-md);
 	padding: var(--spacing-2xl) var(--spacing-xl);
 	text-align: center;
 }
 
 .market-card__error-icon {
-	width: 40px;
-	height: 40px;
 	color: var(--color-error);
+	height: 40px;
+	width: 40px;
 }
 
 .market-card__error-text {
-	font-size: 0.8125rem;
 	color: var(--color-text-secondary);
+	font-size: 0.8125rem;
 }
 
 .market-card__retry-btn {
-	display: inline-flex;
 	align-items: center;
-	gap: var(--spacing-sm);
-	padding: var(--spacing-sm) var(--spacing-xl);
 	background: var(--glass-bg);
 	border: 1px solid var(--glass-border);
 	border-radius: var(--border-radius-xl);
 	color: var(--color-text-primary);
+	cursor: pointer;
+	display: inline-flex;
 	font-family: var(--font-sans);
 	font-size: 0.8125rem;
 	font-weight: 500;
-	cursor: pointer;
+	gap: var(--spacing-sm);
+	padding: var(--spacing-sm) var(--spacing-xl);
 	transition: all var(--transition-fast);
 }
 
@@ -206,17 +206,17 @@
 
 /* Empty search result */
 .market-card__empty {
+	color: var(--color-text-secondary);
+	font-size: 0.8125rem;
 	padding: var(--spacing-2xl);
 	text-align: center;
-	font-size: 0.8125rem;
-	color: var(--color-text-secondary);
 }
 
 /* Responsive */
 @media (max-width: 540px) {
 	.market-card {
-		padding: var(--spacing-md);
 		border-radius: var(--border-radius);
+		padding: var(--spacing-md);
 	}
 
 	.coin-row__marketcap {

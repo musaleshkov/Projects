@@ -8,7 +8,7 @@ import { ToastProvider } from "./components/Toast/Toast";
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
-	<React.StrictMode>
+	<React.StrictMode> 
 		<WalletProvider>
 			<ToastProvider>
 				<App />

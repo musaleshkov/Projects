@@ -1,55 +1,55 @@
 :root {
 	/* Background */
-	--color-bg-primary: #0d1117;
-	--color-bg-secondary: #161b22;
-	--color-bg-card: rgba(22, 27, 34, 0.65);
+	--spacing-2xl: 2rem;
+	--spacing-3xl: 3rem;
+	--color-accent: #7c3aed;
 
 	/* Text */
-	--color-text-primary: #e6edf3;
-	--color-text-secondary: #8b949e;
-	--color-text-tertiary: #6e7681;
-
-	/* Accent */
-	--color-accent: #7c3aed;
 	--color-accent-blue: #3b82f6;
 	--color-accent-cyan: #06b6d4;
-	--accent-gradient: linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #06b6d4 100%);
+	--transition-base: 250ms ease;
+
+	/* Accent */
+	--glass-bg: rgba(255, 255, 255, 0.03);
+	--color-bg-card: rgba(22, 27, 34, 0.65);
+	--color-bg-primary: #0d1117;
+	--color-bg-secondary: #161b22;
 
 	/* Status */
-	--color-success: #3fb950;
-	--color-warning: #d2991d;
+	--glass-border: rgba(255, 255, 255, 0.06);
+	--shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
 	--color-error: #f85149;
 
 	/* Glass */
-	--glass-bg: rgba(255, 255, 255, 0.03);
-	--glass-border: rgba(255, 255, 255, 0.06);
-	--glass-hover: rgba(255, 255, 255, 0.06);
+	--transition-fast: 150ms ease;
+	--shadow-glow: 0 0 20px rgba(124, 58, 237, 0.15);
+	--accent-gradient: linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #06b6d4 100%);
 
 	/* Borders & Shadows */
-	--border-radius-sm: 0.5rem;
+	--glass-hover: rgba(255, 255, 255, 0.06);
+	--spacing-lg: 1rem;
+	--spacing-md: 0.75rem;
+	--font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Consolas", monospace;
 	--border-radius: 0.75rem;
 	--border-radius-lg: 1rem;
-	--border-radius-xl: 1.5rem;
-	--shadow-glow: 0 0 20px rgba(124, 58, 237, 0.15);
-	--shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
 
 	/* Spacing */
-	--spacing-xs: 0.25rem;
+	--border-radius-sm: 0.5rem;
+	--border-radius-xl: 1.5rem;
+	--font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--transition-slow: 400ms ease;
 	--spacing-sm: 0.5rem;
-	--spacing-md: 0.75rem;
-	--spacing-lg: 1rem;
-	--spacing-xl: 1.5rem;
-	--spacing-2xl: 2rem;
-	--spacing-3xl: 3rem;
+	--color-success: #3fb950;
+	--color-text-primary: #e6edf3;
 
 	/* Typography */
-	--font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-	--font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Consolas", monospace;
+	--color-text-secondary: #8b949e;
+	--color-text-tertiary: #6e7681;
 
 	/* Transitions */
-	--transition-fast: 150ms ease;
-	--transition-base: 250ms ease;
-	--transition-slow: 400ms ease;
+	--color-warning: #d2991d;
+	--spacing-xl: 1.5rem;
+	--spacing-xs: 0.25rem;
 }
 
 *,
@@ -61,15 +61,15 @@
 }
 
 html {
-	height: 100%;
 	background-color: var(--color-bg-primary);
+	height: 100%;
 }
 
 body {
-	height: 100%;
-	font-family: var(--font-sans);
 	color: var(--color-text-primary);
+	font-family: var(--font-sans);
 	-webkit-font-smoothing: antialiased;
+	height: 100%;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
 	overflow-y: auto;

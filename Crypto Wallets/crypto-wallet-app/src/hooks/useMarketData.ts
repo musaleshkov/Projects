@@ -7,15 +7,17 @@ const COINGECKO_URL =
 const REFRESH_INTERVAL = 60000;
 
 export const useMarketData = () => {
-	const [coins, setCoins] = useState<CoinData[]>([]);
+	const [coins, setCoins] = useState<CoinData[]>([]); 
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 	const mountedRef = useRef(true);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
 	const fetchCoins = useCallback(async () => {
+		const controller = new AbortController();
+
 		try {
-			const res = await fetch(COINGECKO_URL);
+			const res = await fetch(COINGECKO_URL, { signal: controller.signal });
 			if (!res.ok) throw new Error(`API error: ${res.status}`);
 			const data: CoinData[] = await res.json();
 			if (mountedRef.current) {
@@ -24,11 +26,14 @@ export const useMarketData = () => {
 				setIsLoading(false);
 			}
 		} catch (err) {
+			if ((err as Error).name === "AbortError") return;
 			if (mountedRef.current) {
 				setError(err instanceof Error ? err.message : "Failed to fetch market data");
 				setIsLoading(false);
 			}
 		}
+
+		return () => controller.abort();
 	}, []);
 
 	useEffect(() => {

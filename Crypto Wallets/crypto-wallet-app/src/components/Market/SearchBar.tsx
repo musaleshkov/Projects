@@ -14,7 +14,7 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({
 	placeholder = "Search coins...",
 }) => {
 	return (
-		<div className="search-bar">
+		<div className="search-bar"> 
 			<Icon className="search-bar__icon" icon="ph:magnifying-glass-bold" />
 			<input
 				className="search-bar__input"

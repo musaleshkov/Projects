@@ -14,7 +14,7 @@ export const CHAIN_NATIVE_SYMBOLS: Record<number, string> = {
 	137: "MATIC",
 	56: "BNB",
 	97: "BNB",
-};
+}; 
 
 /** Chain ID to native currency icon mapping */
 export const CHAIN_NATIVE_ICONS: Record<number, string> = {

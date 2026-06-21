@@ -1,0 +1,48 @@
+# Cursor AI Rules — Crypto Wallet App
+
+## Project Overview
+React 19 + TypeScript + ethers.js v6 crypto wallet dashboard with:
+- MetaMask wallet connection (via custom WalletContext, NOT react-moralis)
+- Token balance fetching (ERC-20 + native)
+- CoinGecko market data (top 50 coins)
+- Tabbed UI: Wallet | Market
+
+## Tech Stack
+- React 19, TypeScript 4.9, ethers.js v6.17
+- CSS custom properties with glassmorphism dark theme
+- No state management library — Context API + hooks only
+- react-scripts (CRA) for build
+
+## Code Conventions
+- Components: `FunctionComponent` type, default exports
+- Hooks: custom hooks in `src/hooks/`, file prefix `use*`
+- Context: `src/contexts/`, custom provider + hook pattern
+- CSS: BEM-like naming with `__` for elements, `--` for modifiers
+- Types: interfaces in `src/types/index.ts`
+- Constants: extracted to `src/constants/`
+- Imports: relative paths (NO `@/` aliases — CRA doesn't support them)
+
+## File Structure Rules
+- Each component in its own folder with `.tsx` + `.css`
+- Sub-components nested within parent folder
+- Barrel exports (`index.ts`) for multi-file modules
+
+## Forbidden
+- NO `react-moralis` or `moralis` (deprecated, removed)
+- NO `@` path aliases (CRA breaks with them)
+- NO inline styles (use CSS classes)
+- NO `any` types without eslint-disable comment
+- NO bare `fetch()` without AbortController
+
+## Patterns
+- `memo()` on components that don't change often (CoinRow, TokenBalances)
+- `React.lazy()` + `Suspense` for tab content (Market is lazy-loaded)
+- `useCallback` for event handlers passed as props
+- `useRef` for mount tracking + fetch cancellation
+- `Promise.allSettled` for parallel data fetching
+
+## Commands
+- `npm start` — dev server (port 3000)
+- `npm run build` — production build
+- `npm run lint` — ESLint
+- `npm run format` — Prettier

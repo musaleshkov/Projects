@@ -8,7 +8,7 @@ export interface ChainInfo {
 }
 
 interface WalletState {
-	signer: JsonRpcSigner | null;
+	signer: JsonRpcSigner | null; 
 	account: string | null;
 	chainId: number | null;
 	isConnecting: boolean;
