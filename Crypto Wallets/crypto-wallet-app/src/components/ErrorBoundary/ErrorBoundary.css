@@ -1,0 +1,80 @@
+.error-boundary {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+	animation: fadeInUp 0.5s var(--transition-slow);
+}
+
+.error-boundary__card {
+	position: relative;
+	background: var(--color-bg-card);
+	backdrop-filter: blur(24px);
+	-webkit-backdrop-filter: blur(24px);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius-lg);
+	overflow: hidden;
+}
+
+.error-boundary__border {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: var(--color-error);
+	opacity: 0.8;
+}
+
+.error-boundary__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: var(--spacing-2xl) var(--spacing-xl);
+	text-align: center;
+	gap: var(--spacing-md);
+}
+
+.error-boundary__icon {
+	width: 48px;
+	height: 48px;
+	color: var(--color-error);
+}
+
+.error-boundary__title {
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: var(--color-text-primary);
+}
+
+.error-boundary__message {
+	font-size: 0.8125rem;
+	color: var(--color-text-secondary);
+	max-width: 300px;
+	line-height: 1.5;
+}
+
+.error-boundary__retry-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	margin-top: var(--spacing-sm);
+	padding: var(--spacing-sm) var(--spacing-xl);
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius-xl);
+	color: var(--color-text-primary);
+	font-family: var(--font-sans);
+	font-size: 0.875rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all var(--transition-fast);
+}
+
+.error-boundary__retry-btn:hover {
+	background: var(--glass-hover);
+	border-color: rgba(124, 58, 237, 0.25);
+}
+
+.error-boundary__retry-btn:active {
+	transform: scale(0.97);
+}

@@ -1,67 +1,62 @@
 import { Component, ErrorInfo, ReactNode } from "react";
+import { Icon } from "@iconify/react";
+import "./ErrorBoundary.css";
 
-interface ErrorBoundaryProps {
+interface Props {
 	children: ReactNode;
-	fallback?: ReactNode;
 }
 
-interface ErrorBoundaryState {
+interface State {
 	hasError: boolean;
 	error: Error | null;
 }
 
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-	constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends Component<Props, State> {
+	constructor(props: Props) {
 		super(props);
 		this.state = { hasError: false, error: null };
 	}
 
-	static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+	static getDerivedStateFromError(error: Error): State {
 		return { hasError: true, error };
 	}
 
 	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		console.error("ErrorBoundary caught an error:", error, errorInfo);
+		console.error("ErrorBoundary caught:", error, errorInfo);
 	}
 
-	handleReset = () => {
+	handleRetry = () => {
 		this.setState({ hasError: false, error: null });
 	};
 
 	render() {
 		if (this.state.hasError) {
-			if (this.props.fallback) {
-				return this.props.fallback;
-			}
-
 			return (
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
-						justifyContent: "center",
-						padding: "2rem",
-						textAlign: "center",
-					}}>
-					<h2>Something went wrong</h2>
-					<p style={{ color: "rgb(110, 114, 125)", maxWidth: "400px" }}>
-						{this.state.error?.message || "An unexpected error occurred."}
-					</p>
-					<button
-						onClick={this.handleReset}
-						style={{
-							marginTop: "1rem",
-							padding: "0.75em 1.5em",
-							borderRadius: "0.5em",
-							border: "none",
-							background: "rgb(0, 122, 255)",
-							color: "white",
-							cursor: "pointer",
-							fontWeight: 500,
-						}}>
-						Try Again
-					</button>
+				<div className="error-boundary">
+					<div className="error-boundary__card">
+						<div className="error-boundary__border" />
+
+						<div className="error-boundary__content">
+							<Icon
+								className="error-boundary__icon"
+								icon="ph:warning-octagon-bold"
+							/>
+
+							<h2 className="error-boundary__title">Something went wrong</h2>
+							<p className="error-boundary__message">
+								{this.state.error?.message || "An unexpected error occurred"}
+							</p>
+
+							<button
+								className="error-boundary__retry-btn"
+								onClick={this.handleRetry}
+								type="button"
+							>
+								<Icon icon="ph:arrow-counter-clockwise-bold" />
+								<span>Try Again</span>
+							</button>
+						</div>
+					</div>
 				</div>
 			);
 		}

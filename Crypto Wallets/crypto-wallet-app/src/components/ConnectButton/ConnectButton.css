@@ -1,15 +1,79 @@
-.authentication-button {
-	background: var(--color-surface);
-	box-shadow: var(--shadow-card);
-	padding: var(--spacing-lg);
-	border-radius: var(--border-radius);
-	display: flex;
-	align-items: center;
-	gap: var(--spacing-sm);
+.connect-button {
+	position: relative;
+	width: 100%;
+	max-width: 360px;
+	padding: var(--spacing-lg) var(--spacing-2xl);
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius-xl);
+	color: var(--color-text-primary);
+	font-family: var(--font-sans);
+	font-size: 1rem;
+	font-weight: 600;
 	cursor: pointer;
+	overflow: hidden;
+	transition: all var(--transition-base);
+	animation: fadeInUp 0.5s var(--transition-slow) 0.2s both;
 }
 
-.icon {
-	width: 2em;
-	height: 1.4em;
+.connect-button:hover {
+	background: var(--glass-hover);
+	border-color: rgba(124, 58, 237, 0.3);
+	transform: translateY(-1px);
+	box-shadow: var(--shadow-glow);
+}
+
+.connect-button:active {
+	transform: translateY(0);
+}
+
+.connect-button:disabled {
+	opacity: 0.7;
+	cursor: wait;
+	transform: none;
+}
+
+.connect-button__content {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-md);
+}
+
+.connect-button__icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	flex-shrink: 0;
+}
+
+.connect-button__spinner {
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 2px solid rgba(255, 255, 255, 0.15);
+	border-top-color: var(--color-accent);
+	border-radius: 50%;
+	animation: spin 0.7s linear infinite;
+}
+
+/* Gradient glow ring */
+.connect-button__glow {
+	position: absolute;
+	inset: -2px;
+	border-radius: inherit;
+	background: var(--accent-gradient);
+	opacity: 0;
+	z-index: 0;
+	transition: opacity var(--transition-base);
+	filter: blur(8px);
+}
+
+.connect-button:hover .connect-button__glow {
+	opacity: 0.4;
+}
+
+.connect-button--loading .connect-button__glow {
+	opacity: 0.3;
+	animation: pulseGlow 2s ease infinite;
 }
