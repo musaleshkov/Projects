@@ -98,10 +98,12 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 		}
 	}, [setupProvider]);
 
-	const handleChainChanged = useCallback((_chainId: string) => {
-		if (providerRef.current) {
-			setupProvider(providerRef.current);
-		}
+	const handleChainChanged = useCallback(async (_chainId: string) => {
+		// Create a fresh provider — the old one is stale after chain change
+		if (!window.ethereum) return;
+		const newProvider = new BrowserProvider(window.ethereum);
+		providerRef.current = newProvider;
+		await setupProvider(newProvider);
 	}, [setupProvider]);
 
 	useEffect(() => {
